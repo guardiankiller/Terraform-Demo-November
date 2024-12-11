@@ -1,4 +1,4 @@
-name: 'Terraform Test'
+name: 'Terraform Test, Plan and Apply'
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
       run: terraform validate
 
   terraform-plan:
-    name: 'Terraform Test Job'
+    name: 'Terraform Plan Job'
     runs-on: ubuntu-latest
     needs: terraform-test
 
@@ -62,7 +62,7 @@ jobs:
           path: terraform.plan
 
   terraform-apply:
-    name: 'Terraform Test Job'
+    name: 'Terraform Apply Job'
     runs-on: ubuntu-latest
     needs: terraform-plan
 
