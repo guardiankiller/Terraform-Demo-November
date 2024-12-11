@@ -51,7 +51,7 @@ resource "azurerm_linux_web_app" "alwa" {
 }
 
 resource "azurerm_mssql_server" "sqlservermisho" {
-  name                         = var.sql_server_name
+  name                         = "${var.sql_server_name}-${random_integer.ri.result}"
   resource_group_name          = azurerm_resource_group.mishorg.name
   location                     = azurerm_resource_group.mishorg.location
   version                      = "12.0"
@@ -60,7 +60,7 @@ resource "azurerm_mssql_server" "sqlservermisho" {
 }
 
 resource "azurerm_mssql_database" "databasemisho" {
-  name           = var.sql_database_name
+  name           = "${var.sql_database_name}-${random_integer.ri.result}"
   server_id      = azurerm_mssql_server.sqlservermisho.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
